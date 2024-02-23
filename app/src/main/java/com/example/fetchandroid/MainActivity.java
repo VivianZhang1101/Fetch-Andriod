@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // Handle the network request failure
-
             @Override
             public void onFailure(@NonNull Call<List<Item>> call, Throwable t) {
                 // Hide loading indicator
