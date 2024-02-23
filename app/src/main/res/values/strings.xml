@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Fetch Android</string>
+    <string name="hide_list_id">Hide List Id</string>
+    <string name="show_list_id">Show List Id</string>
+    <string name="toggle_visibility">Toggle List Id</string>
+    <string name="Title">Item Name</string>
+    <string name="error_message">Error loading data</string>
+</resources>

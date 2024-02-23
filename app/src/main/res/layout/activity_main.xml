@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Title"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        tools:ignore="RelativeOverlap">
+
+        <ImageButton
+            android:id="@+id/toggleButton"
+            android:layout_width="48dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="-3dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/toggle_visibility"
+            android:src="@drawable/visibility_off"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/tvToggleState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:layout_below="@id/toggleButton"
+            android:layout_centerHorizontal="true"
+            android:text="@string/show_list_id"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitle"
+        android:layout_marginTop="8dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/tvErrorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/error_message"
+        android:visibility="gone"/>
+</RelativeLayout>
