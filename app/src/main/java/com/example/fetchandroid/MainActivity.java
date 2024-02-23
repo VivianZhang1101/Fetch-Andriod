@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton toggleButton = findViewById(R.id.toggleButton);
         final TextView tvToggleState = findViewById(R.id.tvToggleState);
 
+        // Define the behavior when the toggle button is clicked
         toggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     toggleButton.setImageResource(R.drawable.visibility_off);
                     tvToggleState.setText(R.string.show_list_id);
                 }
+                // Notify the adapter to refresh the list
                 adapter.toggleItemID();
             }
         });
@@ -72,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     * Fetches the list of items from the network using Retrofit.
+     * On successful fetch, filters and sorts the list before updating the adapter.
+     * On failure, displays an error message.
+     */
     private void fetchData() {
         Retrofit retrofit = RetrofitClient.getClient();
         FetchService service = retrofit.create(FetchService.class);
@@ -83,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
                 // On Response, hide loading indicator
                 progressBar.setVisibility(View.GONE);
+                // Process the response on success
                 if (response.isSuccessful() && response.body() != null) {
                     List<Item> items = response.body();
                     List<Item> filteredItems = items.stream()
@@ -104,18 +113,19 @@ public class MainActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                     tvErrorMessage.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
-                } else {
+                } else { // Handle failure scenario
                     // Show error message
                     tvErrorMessage.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
                 }
             }
 
+            // Handle the network request failure
+
             @Override
             public void onFailure(@NonNull Call<List<Item>> call, Throwable t) {
                 // Hide loading indicator
                 progressBar.setVisibility(View.GONE);
-
                 // Show error message
                 tvErrorMessage.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
